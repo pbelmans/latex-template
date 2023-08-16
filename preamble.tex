@@ -1,0 +1,97 @@
+\usepackage{hyperref}
+\hypersetup{hypertexnames = false, bookmarksdepth = 2, bookmarksopen = true, colorlinks, linkcolor = black, citecolor = black, urlcolor = black, pdfstartview={XYZ null null 1}}
+
+\usepackage{amsfonts}
+\usepackage[fleqn, leqno]{amsmath}
+\usepackage{amsthm}
+
+\usepackage[capitalise]{cleveref}
+
+% as per https://tex.stackexchange.com/questions/306908/switching-from-amsrefs-to-biblatex
+\begin{filecontents*}{mrnumber.dbx}
+\DeclareDatamodelFields[type=field,datatype=verbatim]{mrnumber}
+\DeclareDatamodelEntryfields{mrnumber}
+\end{filecontents*}
+\usepackage[backend=biber, maxbibnames=99, datamodel=mrnumber, sortcites]{biblatex}
+
+\usepackage{booktabs}
+\usepackage{colonequals}
+\usepackage{diagbox}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{parskip}
+\usepackage{thmtools}
+\usepackage{tikz-cd}
+\usepackage[colorinlistoftodos, textsize = footnotesize]{todonotes}
+\usepackage{xparse}
+\usepackage{xspace}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage[scaled=0.83]{beramono}
+%\usepackage[charter]{mathdesign}
+%\usepackage[scaled]{beramono,berasans}
+\usepackage{eucal}
+\usepackage{microtype}
+\frenchspacing
+
+\usepackage{gitinfo2}
+
+% bibliography configuration
+\DeclareFieldFormat{mrnumber}{%
+  MR\addcolon\space
+  \ifhyperref
+    {\href{http://www.ams.org/mathscinet-getitem?mr=#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}
+
+\renewbibmacro*{doi+eprint+url}{%
+  \iftoggle{bbx:doi}
+    {\printfield{doi}}
+    {}%
+  \newunit\newblock
+  \printfield{mrnumber}%
+  \newunit\newblock
+  \iftoggle{bbx:eprint}
+    {\usebibmacro{eprint}}
+    {}%
+  \newunit\newblock
+  \iftoggle{bbx:url}
+    {\usebibmacro{url+urldate}}
+    {}}
+
+% mathematics configuration
+\relpenalty=10000
+\binoppenalty=10000
+
+% todonotes configuration
+\newcounter{todocounter}
+\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30]{\thetodocounter. Add reference\IfNoValueF{#1}{: #1}}\xspace}
+\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50]{\thetodocounter. Check this\IfNoValueF{#1}{: #1}}\xspace}
+\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50]{\thetodocounter. Fix this\IfNoValueF{#1}{: #1}}\xspace}
+\DeclareDocumentCommand\expand{g}{\stepcounter{todocounter}\todo[color = green!50]{\thetodocounter. Expand\IfNoValueF{#1}{: #1}}\xspace}
+\newcommand\removethis{\stepcounter{todocounter}\todo[color=yellow!50]{\thetodocounter. Remove this?}}
+
+% environments
+\declaretheoremstyle[
+  spaceabove = 3pt,
+  spacebelow = 3pt,
+]{lecture}
+\theoremstyle{lecture}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
+\makeatletter
+\def\gitfootnote{\gdef\@thefnmark{}\@footnotetext}
+\makeatother
+
+% macros
+\mathchardef\mhyphen="2D
+\newcommand\dash{\nobreakdash-\hspace{0pt}}

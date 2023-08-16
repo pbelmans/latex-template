@@ -1,0 +1,48 @@
+name: build pdf
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # configuration: one file per line (including directory if in a subdirectory)
+      # the filename (discarding directory) must be unique to guarantee correct deployment
+      FILES: |
+        note.tex
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install and run Git hooks
+        run: |
+          git config core.hooksPath .githooks/
+          git checkout
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: ${{ env.FILES }}
+          latexmk_shell_escape: true
+          work_in_root_file_dir: true
+      - name: Move pdfs
+        run: mkdir -p github-artifacts && mv -t ./github-artifacts/ `echo "${{ env.FILES }}" | sed "s/.tex/.pdf/g" | sed "s/\n/ /g"`
+      - name: Upload pdfs as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pdfs
+          path: ./github-artifacts
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          path: github-artifacts
+      - name: Move pdf
+        run: mkdir -p github-deploy && mv github-artifacts/*/* github-deploy
+      - name: Deploy on orphan branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./github-deploy
+          publish_branch: build
+          force_orphan: true
