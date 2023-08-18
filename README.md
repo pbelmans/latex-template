@@ -1,9 +1,12 @@
+[![pdf](https://github.com/pbelmans/latex-template/actions/workflows/pdf.yml/badge.svg)](https://github.com/pbelmans/latex-template/actions/workflows/pdf.yml)
+
 [![pdf](https://img.shields.io/badge/pdf-note-green)](https://github.com/pbelmans/latex-template/blob/build/note.pdf)
 
 Add badges as one sees fit:
 
 * to change the name of the badge, just change the URL for the image
 * they must link to the orphan branch called `build`
+* add a badge for every file of interest
 
 ## GitHub Actions
 
