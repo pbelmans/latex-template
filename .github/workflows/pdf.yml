@@ -21,7 +21,9 @@ jobs:
           latexmk_shell_escape: true
           work_in_root_file_dir: true
       - name: Move output pdf's preserving directory structure
-        run: echo -n "${{ env.FILES }}" | awk '{$1=$1};1' | sed "s/.tex$/.pdf/g" | rsync -a --files-from=- . github-artifacts
+        run: |
+          mkdir github-artifacts
+          echo -n "${{ env.FILES }}" | awk '{$1=$1};1' | sed "s/.tex$/.pdf/g" | rsync -a --files-from=- . ./github-artifacts
       - name: Upload pdf's as artifact
         uses: actions/upload-artifact@v3
         with:
