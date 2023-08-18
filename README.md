@@ -25,3 +25,7 @@ In order to activate the hooks, you can run
 to add the `.githooks/` directory to the path.
 This makes it possible to display the commit from which a file is built,
 using the `gitinfo2` package.
+
+## .gitignore
+
+It is probably not a bad idea to include the names of the pdf's you are working on in the `.gitignore`.
