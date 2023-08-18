@@ -29,3 +29,9 @@ using the `gitinfo2` package.
 ## .gitignore
 
 It is probably not a bad idea to include the names of the pdf's you are working on in the `.gitignore`.
+
+## Makefile
+
+It can be useful to write the commands you use to build pdf's in the Makefile.
+
+I use `latexrun` for making my life easy, but there are alternatives.
