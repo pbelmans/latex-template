@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "**.tex"
+      - "**.bib"
 jobs:
   build:
     runs-on: ubuntu-latest
