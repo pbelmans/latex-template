@@ -1,5 +1,6 @@
 name: build pdf
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
