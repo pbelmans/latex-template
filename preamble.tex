@@ -5,7 +5,7 @@
 \usepackage[fleqn, leqno]{amsmath}
 \usepackage{amsthm}
 
-\usepackage[capitalise]{cleveref}
+\usepackage[capitalise,noabbrev]{cleveref}
 
 % as per https://tex.stackexchange.com/questions/306908/switching-from-amsrefs-to-biblatex
 \begin{filecontents*}{mrnumber.dbx}
@@ -60,6 +60,14 @@
   \iftoggle{bbx:url}
     {\usebibmacro{url+urldate}}
     {}}
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldset=issn, null]
+    }
+  }
+}
 
 % mathematics configuration
 \relpenalty=10000
