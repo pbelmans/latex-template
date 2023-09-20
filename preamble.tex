@@ -1,18 +1,13 @@
 \usepackage{hyperref}
 \hypersetup{hypertexnames = false, bookmarksdepth = 2, bookmarksopen = true, colorlinks, linkcolor = black, citecolor = black, urlcolor = black, pdfstartview={XYZ null null 1}}
 
+% mathematics
 \usepackage{amsfonts}
 \usepackage[fleqn, leqno]{amsmath}
 \usepackage{amsthm}
 
+% references
 \usepackage[capitalise,noabbrev]{cleveref}
-
-% as per https://tex.stackexchange.com/questions/306908/switching-from-amsrefs-to-biblatex
-\begin{filecontents*}{mrnumber.dbx}
-\DeclareDatamodelFields[type=field,datatype=verbatim]{mrnumber}
-\DeclareDatamodelEntryfields{mrnumber}
-\end{filecontents*}
-\usepackage[backend=biber, maxbibnames=99, datamodel=mrnumber, sortcites]{biblatex}
 
 \usepackage{booktabs}
 \usepackage{colonequals}
@@ -40,7 +35,14 @@
 
 \usepackage{gitinfo2}
 
-% bibliography configuration
+% bibliography
+\begin{filecontents*}{mrnumber.dbx}
+\DeclareDatamodelFields[type=field,datatype=verbatim]{mrnumber}
+\DeclareDatamodelEntryfields{mrnumber}
+\end{filecontents*}
+
+\usepackage[backend=biber, maxbibnames=99, datamodel=mrnumber, sortcites]{biblatex}
+
 \DeclareFieldFormat{mrnumber}{%
   MR\addcolon\space
   \ifhyperref
