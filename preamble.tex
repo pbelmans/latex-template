@@ -24,6 +24,7 @@
 \usepackage{tikz-cd}
 \usepackage[colorinlistoftodos, textsize = footnotesize]{todonotes}
 \usepackage{xparse}
+\usepackage{xpatch}
 \usepackage{xspace}
 
 \usepackage[utf8]{inputenc}
@@ -68,6 +69,18 @@
     }
   }
 }
+\xpretobibmacro{bib+doi+url}
+  {\iffieldundef{doi}
+     {}
+     {\clearfield{url}}}
+  {}{}
+
+% patch macro used in notes
+\xpretobibmacro{cite+doi+url}
+  {\iffieldundef{doi}
+     {}
+     {\clearfield{url}}}
+  {}{}
 
 % mathematics configuration
 \relpenalty=10000
