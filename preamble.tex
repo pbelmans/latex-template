@@ -111,9 +111,12 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{remark}[theorem]{Remark}
 
-\makeatletter
-\def\gitfootnote{\gdef\@thefnmark{}\@footnotetext}
-\makeatother
+\newcommand\gitfootnote[1]{%
+  \begin{NoHyper}
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \end{NoHyper}
+}
 
 % macros
 \mathchardef\mhyphen="2D
