@@ -57,3 +57,7 @@ jobs:
           user_email: 'github-actions[bot]@users.noreply.github.com'
           # remove this option if you want to have all builds preserved in the build directory
           force_orphan: true
+      - name: Delete artifacts
+        uses: geekyeggo/delete-artifact@v2
+        with:
+          name: pdfs
