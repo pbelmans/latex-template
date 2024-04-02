@@ -16,17 +16,18 @@ jobs:
         note.tex
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install and run Git hooks
         run: |
           git config core.hooksPath .githooks/
           git checkout
       - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: ${{ env.FILES }}
           latexmk_shell_escape: true
           work_in_root_file_dir: true
+          docker_image: ghcr.io/xu-cheng/texlive-full:20230801
       - name: Move output pdf's preserving directory structure
         run: |
           mkdir github-artifacts
