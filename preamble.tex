@@ -87,9 +87,6 @@
 \relpenalty=10000
 \binoppenalty=10000
 
-% use this as todos
-\newcommand\pieter[1]{\begin{color}{magenta}\textbf{Pieter}: #1\end{color}}
-
 % environments
 \declaretheoremstyle[
   spaceabove = 3pt,
@@ -111,6 +108,10 @@
   \addtocounter{footnote}{-1}%
   \end{NoHyper}
 }
+
+\newcommand\pieter[1]{\begin{color}{magenta}\textbf{Pieter}: #1\end{color}}
+%\newcommand\coauthor[1]{\begin{color}{blue}\textbf{Coauthor}: #1\end{color}}
+%\newcommand\coauthor[1]{\begin{color}{red}\textbf{Coauthor}: #1\end{color}}
 
 % macros
 \mathchardef\mhyphen="2D
