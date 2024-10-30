@@ -88,19 +88,31 @@
 \binoppenalty=10000
 
 % environments
-\declaretheoremstyle[
-  spaceabove = 3pt,
-  spacebelow = 3pt,
-]{lecture}
-\theoremstyle{lecture}
-\newtheorem{theorem}{Theorem}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{exercise}[theorem]{Exercise}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{remark}[theorem]{Remark}
+\declaretheoremstyle[spaceabove = 3pt, spacebelow = 3pt, bodyfont = \itshape]{theorem}
+\declaretheoremstyle[spaceabove = 3pt, spacebelow = 3pt]{remark}
+
+\declaretheorem[style=theorem]{theorem}
+\declaretheorem[style=theorem, sibling=theorem]{corollary}
+\declaretheorem[style=theorem, sibling=theorem]{lemma}
+\declaretheorem[style=theorem, sibling=theorem]{proposition}
+
+\declaretheorem[style=remark, sibling=theorem]{definition}
+\declaretheorem[style=remark, sibling=theorem]{example}
+\declaretheorem[style=remark, sibling=theorem]{remark}
+
+\declaretheorem[style=theorem, numberwithin=section, title=Theorem]{alphatheorem}
+\declaretheorem[style=theorem, sibling=alphatheorem, title=Conjecture]{alphaconjecture}
+\declaretheorem[style=theorem, sibling=alphatheorem, title=Corollary]{alphacorollary}
+\declaretheorem[style=theorem, sibling=alphatheorem, title=Proposition]{alphaproposition}
+
+\renewcommand{\thealphatheorem}{\Alph{alphatheorem}}
+\renewcommand{\thealphaconjecture}{\Alph{alphatheorem}}
+\renewcommand{\thealphacorollary}{\Alph{alphatheorem}}
+\renewcommand{\thealphaproposition}{\Alph{alphatheorem}}
+\crefname{alphatheorem}{Theorem}{Theorems}
+\crefname{alphaconjecture}{Conjecture}{Conjectures}
+\crefname{alphacorollary}{Corollary}{Corollaries}
+\crefname{alphaproposition}{Proposition}{Propositions}
 
 \crefformat{enumi}{#2\textup{(#1)}#3}
 
