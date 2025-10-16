@@ -10,3 +10,7 @@ clean:
 
 diff:
 	git latexdiff $(COMMIT) main --main note.tex --output diff-note.pdf --ignore-makefile --run-biber
+
+format:
+	tex-fmt --nowrap note.tex
+	bibgetter format --local=bibliography.bib
