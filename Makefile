@@ -14,3 +14,6 @@ diff:
 format:
 	tex-fmt --nowrap note.tex
 	bibgetter format --local=bibliography.bib
+
+expand:
+	latexpand --biber=latex.out/note.bbl --empty-comments --verbose article.tex > expanded.tex
