@@ -7,7 +7,10 @@
 \usepackage{amsthm}
 
 % references
-\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage{zref-clever}
+\zcsetup{cap}
+\zcsetup{noabbrev}
+\let\cref\zcref
 
 \usepackage{booktabs}
 \usepackage{colonequals}
@@ -109,12 +112,13 @@
 \renewcommand{\thealphaconjecture}{\Alph{alphatheorem}}
 \renewcommand{\thealphacorollary}{\Alph{alphatheorem}}
 \renewcommand{\thealphaproposition}{\Alph{alphatheorem}}
-\crefname{alphatheorem}{Theorem}{Theorems}
-\crefname{alphaconjecture}{Conjecture}{Conjectures}
-\crefname{alphacorollary}{Corollary}{Corollaries}
-\crefname{alphaproposition}{Proposition}{Propositions}
+\zcRefTypeSetup{alphatheorem}{Name-sg=Theorem,name-sg=theorem,Name-pl=Theorems,name-pl=theorems}
+\zcRefTypeSetup{alphaconjecture}{Name-sg=Conjecture,name-sg=conjecture,Name-pl=Conjectures,name-pl=conjectures}
+\zcRefTypeSetup{alphacorollary}{Name-sg=Corollary,name-sg=corollary,Name-pl=Corollaries,name-pl=corollaries}
+\zcRefTypeSetup{alphaproposition}{Name-sg=Proposition,name-sg=proposition,Name-pl=Propositions,name-pl=propositions}
 
-\crefformat{enumi}{#2\textup{(#1)}#3}
+\zcRefTypeSetup{enumi}{refbounds={,\textup{(},\textup{)},}}
+
 
 \newcommand\gitfootnote[1]{%
   \begin{NoHyper}
