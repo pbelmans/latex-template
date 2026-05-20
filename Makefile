@@ -9,7 +9,7 @@ clean:
 	latexrun --clean-all
 
 diff:
-	git latexdiff $(COMMIT) main --main note.tex --output diff-note.pdf --ignore-makefile --run-biber
+	git latexdiff $(COMMIT) main --main note.tex --output diff-note.pdf --ignore-makefile --run-biber --ignore-latex-errors
 
 format:
 	tex-fmt --nowrap note.tex
