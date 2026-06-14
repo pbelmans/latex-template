@@ -19,7 +19,6 @@
 \usepackage{fullpage}
 \usepackage{mathtools}
 \usepackage{parskip}
-\usepackage{thmtools}
 \usepackage{tikz-cd}
 \usepackage{xparse}
 \usepackage{xpatch}
@@ -119,6 +118,15 @@
 \zcRefTypeSetup{alphaproposition}{Name-sg=Proposition,name-sg=proposition,Name-pl=Propositions,name-pl=propositions}
 
 \zcRefTypeSetup{enumi}{refbounds={,\textup{(},\textup{)},}}
+
+% workaround to https://github.com/muzimuzhi/thmtools/issues/75
+% until it is patched
+\usepackage{thmtools}
+\makeatletter
+\renewcommand\thmt@autorefsetup{%
+  \@xa\def\csname\thmt@envname autorefname\@xa\endcsname\@xa{\thmt@thmname}%
+}
+\makeatother
 
 
 \newcommand\gitfootnote[1]{%
