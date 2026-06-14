@@ -303,3 +303,5 @@ TSWLatexianTemp*
 # VimTeX
 .latexrun.db
 .latexrun.db.lock
+
+mrnumber.dbx
