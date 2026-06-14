@@ -19,6 +19,7 @@
 \usepackage{fullpage}
 \usepackage{mathtools}
 \usepackage{parskip}
+\usepackage{thmtools}
 \usepackage{tikz-cd}
 \usepackage{xparse}
 \usepackage{xpatch}
@@ -90,7 +91,15 @@
 \relpenalty=10000
 \binoppenalty=10000
 
-% environments
+% theorem environments
+% workaround to https://github.com/muzimuzhi/thmtools/issues/75
+% until it is patched
+\makeatletter
+\renewcommand\thmt@autorefsetup{%
+  \@xa\def\csname\thmt@envname autorefname\@xa\endcsname\@xa{\thmt@thmname}%
+}
+\makeatother
+
 \declaretheoremstyle[spaceabove = 3pt, spacebelow = 3pt, bodyfont = \itshape]{theorem}
 \declaretheoremstyle[spaceabove = 3pt, spacebelow = 3pt]{remark}
 
@@ -118,15 +127,6 @@
 \zcRefTypeSetup{alphaproposition}{Name-sg=Proposition,name-sg=proposition,Name-pl=Propositions,name-pl=propositions}
 
 \zcRefTypeSetup{enumi}{refbounds={,\textup{(},\textup{)},}}
-
-% workaround to https://github.com/muzimuzhi/thmtools/issues/75
-% until it is patched
-\usepackage{thmtools}
-\makeatletter
-\renewcommand\thmt@autorefsetup{%
-  \@xa\def\csname\thmt@envname autorefname\@xa\endcsname\@xa{\thmt@thmname}%
-}
-\makeatother
 
 
 \newcommand\gitfootnote[1]{%
