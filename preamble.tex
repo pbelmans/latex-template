@@ -10,7 +10,8 @@
 \usepackage{zref-clever}
 \zcsetup{cap}
 \zcsetup{noabbrev}
-\let\cref\zcref
+\newcommand{\cref}[1]{\zcref{#1}}
+\newcommand{\Cref}[1]{\zcref[S]{#1}}
 
 \usepackage{booktabs}
 \usepackage{colonequals}
