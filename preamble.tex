@@ -98,6 +98,18 @@
 \renewcommand\thmt@autorefsetup{%
   \@xa\def\csname\thmt@envname autorefname\@xa\endcsname\@xa{\thmt@thmname}%
 }
+% parskip adds its inter-paragraph glue after a theorem on top of the theorem's
+% own spacebelow, doubling the gap.  parskip.sty patches the pre-theorem space
+% (\deferred@thm@head) but not the post space; mirror that by subtracting
+% \parskip from every theorem's post-skip.
+\patchcmd\@thm
+  {\@topsepadd \thm@postskip}
+  {\advance\thm@postskip-\parskip \@topsepadd \thm@postskip}
+  {}{\typeout{Couldn't patch \string\@thm for parskip}}
+% Same double-gap after the proof environment.  amsthm defines it via a plain
+% trivlist (not \@thm), and thmtools wraps it, so patch it name-agnostically:
+% just before the list closes, subtract \parskip from the post-list space.
+\AddToHook{env/proof/end}{\advance\@topsepadd-\parskip}
 \makeatother
 
 \declaretheoremstyle[spaceabove = 3pt, spacebelow = 3pt, bodyfont = \itshape]{theorem}
